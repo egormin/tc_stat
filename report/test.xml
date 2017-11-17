@@ -1,0 +1,6 @@
+<build number="1.0.{build.number}">
+   <statusInfo status="FAILURE"> <!-- or SUCCESS -->
+      <text action="append"> fitnesse: 45</text>
+      <text action="append"> coverage: 54%</text>
+   </statusInfo>
+</build>
