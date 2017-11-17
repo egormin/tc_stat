@@ -4,8 +4,9 @@ import requests
 import json
 
 tc_url = "myUrl"
-
+print(tc_url)
 auth = "myUser", "myPassword"
+print(auth)
 
 headers = {'Accept': 'application/json'}
 
