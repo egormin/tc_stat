@@ -1,3 +1,9 @@
 #!/usr/bin/env python
+#import requests
+import json
 
-print("ok")
+url = "myUrl"
+
+print(url)
+
+
