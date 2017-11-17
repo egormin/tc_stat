@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 #import requests
 import json
-
-url = "+myUrl+"
+url = "myUrl"
 
 print(url)
 
