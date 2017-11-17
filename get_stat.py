@@ -11,6 +11,8 @@ auth = "myUser", "myPassword"
 headers = {'Accept': 'application/json'}
 
 from anytree import Node, RenderTree
+import sys
+sys.stdout.buffer.write(chr(9986).encode('utf8'))
 
 def projects():
     url = tc_url + "/app/rest/projects"
