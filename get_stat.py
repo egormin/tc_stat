@@ -65,7 +65,7 @@ def tree():
 
 
         for pre, fill, node in RenderTree(first_l):
-            print("%s%s" % (pre.encode('utf8', 'replace'), node.name))
+            print("%s%s" % (pre, node.name.encode('utf8', 'replace')))
     return ""
 
 print(tree())
