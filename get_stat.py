@@ -63,11 +63,9 @@ def tree():
                 if res['project'][m]['parentProjectId'] == sec_lev[j]:
                     third_l = Node(res['project'][m]['name'], parent=second_l)
 
-                    # for pre, fill, node in RenderTree(first_l):
-                    #     print("%s%s" % (pre, node.name))
 
         for pre, fill, node in RenderTree(first_l):
-            print("%s%s" % (pre.encode('utf8', 'replace'), node.name.encode('utf8', 'replace')))
+            print("%s%s" % (pre.encode('utf8', 'replace'), node.name))
     return ""
 
 print(tree())
