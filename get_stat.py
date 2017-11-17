@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
 import requests
+import sys
+sys.path.append("modules")
+
 from beautifultable import BeautifulTable
 
 tc_url = "myUrl"
