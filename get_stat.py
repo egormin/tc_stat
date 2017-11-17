@@ -51,7 +51,7 @@ content2 = "<tr><td>Projects counter: </td><td>{}</td></tr>".format(builds)
 content3 = table
 
 f = open('report/index.html', 'w')
-f.write(headder + content1 + content2 + content3 + footer)
+f.write(headder + content1 + content2 + str(content3) + footer)
 f.close()
 
 
