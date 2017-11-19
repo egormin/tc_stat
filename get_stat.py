@@ -74,7 +74,7 @@ def tree():
                     #     print("%s%s" % (pre, node.name))
 
         for pre, fill, node in RenderTree(first_l):
-            print("%s%s" % (pre, node.name))
+            print("%s%s" % (pre.encode('utf8', 'replace'), node.name.encode('utf8', 'replace')))
     return ""
 
 #print(tree().encode('utf8', 'replace'))
@@ -82,7 +82,7 @@ print(tree())
 
 content = "Projects number: {}<br>".format(prj - arch_count)
 content += "Build configurations number: {}<br>".format(builds)
-content += "Build configurations number: {}".format(arch_count)
+content += "Archived projects number: {}".format(arch_count)
 
 f = open('report/index.html', 'w')
 f.write(content)
