@@ -88,8 +88,8 @@ footer = """
 </body>
 </html>"""
 
-content1 = "<tr><td>Projects counter: </td><td>{}</td></tr>".format(prj)
-content2 = "<tr><td>Projects counter: </td><td>{}</td></tr>".format(builds)
+content1 = "<tr><td>Projects number: </td><td>{}</td></tr>".format(prj)
+content2 = "<tr><td>Build configurations number: </td><td>{}</td></tr>".format(builds)
 
 f = open('report/index.html', 'w')
 f.write(headder + content1 + content2 + footer)
