@@ -63,7 +63,7 @@ def tree():
                 if res['project'][m]['parentProjectId'] == sec_lev[j]:
                     third_l = Node(res['project'][m]['name'], parent=second_l)
 
-
+        print("##teamcity[message text='Projects tree']")
         for pre, fill, node in RenderTree(first_l):
             print("%s%s" % (pre.encode('utf8', 'replace'), node.name.encode('utf8', 'replace')))
     return ""
