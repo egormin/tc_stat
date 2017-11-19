@@ -12,12 +12,14 @@ headers = {'Accept': 'application/json'}
 
 from anytree import Node, RenderTree
 
+arch_count = 0
 def projects():
+    global arch_count
     url = tc_url + "/app/rest/projects"
     r = requests.get(url, headers=headers, auth=auth, timeout=10).json()
-    arch_count = 0
+
     for i in range(0, len(r['project'])):
-        if r['project'][i]['archived'] == 'true':
+        if r['project'][i].get('archived'):
             arch_count += 1
     return len(r['project'])
 
@@ -27,21 +29,13 @@ def builds():
     r = requests.get(url, headers=headers, auth=auth, timeout=10).json()
     return len(r['buildType'])
 
-
-def archived_projects():
-
-    url = tc_url + "/app/rest/buildTypes"
-    r = requests.get(url, headers=headers, auth=auth, timeout=10).json()
-    return len(r['buildType'])
-
 prj = projects()
 builds = builds()
-arch_prj = archived_projects()
 table = BeautifulTable()
 table.column_headers = ["Name", "Count"]
-table.append_row(["Projects", prj])
+table.append_row(["Projects", prj-arch_count])
 table.append_row(["Build configurations", builds])
-table.append_row(["Archived projects", builds])
+table.append_row(["Archived projects", arch_count])
 print(table)
 
 
@@ -76,19 +70,20 @@ def tree():
                 if res['project'][m]['parentProjectId'] == sec_lev[j]:
                     third_l = Node(res['project'][m]['name'], parent=second_l)
 
-        print("##teamcity[message text='Projects tree']")
+                    # for pre, fill, node in RenderTree(first_l):
+                    #     print("%s%s" % (pre, node.name))
+
         for pre, fill, node in RenderTree(first_l):
-            print("%s%s" % (pre.encode('utf8', 'replace'), node.name.encode('utf8', 'replace')))
+            print("%s%s" % (pre, node.name))
     return ""
 
+#print(tree().encode('utf8', 'replace'))
 print(tree())
 
-
-
-
-content1 = "Projects number: {}<br>".format(prj)
-content2 = "Build configurations number: {}".format(builds)
+content = "Projects number: {}<br>".format(prj - arch_count)
+content += "Build configurations number: {}<br>".format(builds)
+content += "Build configurations number: {}".format(arch_count)
 
 f = open('report/index.html', 'w')
-f.write(content1 + content2)
+f.write(content)
 f.close()
