@@ -15,6 +15,10 @@ from anytree import Node, RenderTree
 def projects():
     url = tc_url + "/app/rest/projects"
     r = requests.get(url, headers=headers, auth=auth, timeout=10).json()
+    arch_count = 0
+    for i in range(0, len(r['project'])):
+        if r['project'][i]['archived'] == 'true':
+            arch_count += 1
     return len(r['project'])
 
 
@@ -23,12 +27,21 @@ def builds():
     r = requests.get(url, headers=headers, auth=auth, timeout=10).json()
     return len(r['buildType'])
 
+
+def archived_projects():
+
+    url = tc_url + "/app/rest/buildTypes"
+    r = requests.get(url, headers=headers, auth=auth, timeout=10).json()
+    return len(r['buildType'])
+
 prj = projects()
 builds = builds()
+arch_prj = archived_projects()
 table = BeautifulTable()
 table.column_headers = ["Name", "Count"]
 table.append_row(["Projects", prj])
 table.append_row(["Build configurations", builds])
+table.append_row(["Archived projects", builds])
 print(table)
 
 
@@ -77,5 +90,5 @@ content1 = "Projects number: {}<br>".format(prj)
 content2 = "Build configurations number: {}".format(builds)
 
 f = open('report/index.html', 'w')
-f.write(content1 + content2 )
+f.write(content1 + content2)
 f.close()
