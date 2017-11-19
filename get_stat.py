@@ -72,25 +72,10 @@ print(tree())
 
 
 
-headder = """
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Report</title>
-</head>
-<body>
-<table border="0">
-"""
 
-footer = """
-</table>
-</body>
-</html>"""
-
-content1 = "<tr><td>Projects number: </td><td>{}</td></tr>".format(prj)
-content2 = "<tr><td>Build configurations number: </td><td>{}</td></tr>".format(builds)
+content1 = "Projects number: {}".format(prj)
+content2 = "Build configurations number: {}".format(builds)
 
 f = open('report/index.html', 'w')
-f.write(headder + content1 + content2 + footer)
+f.write(content1 + content2 )
 f.close()
