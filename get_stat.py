@@ -73,7 +73,7 @@ print(tree())
 
 
 
-content1 = "Projects number: {}".format(prj)
+content1 = "Projects number: {}<br>".format(prj)
 content2 = "Build configurations number: {}".format(builds)
 
 f = open('report/index.html', 'w')
