@@ -79,8 +79,8 @@ headder = """
     <meta charset="UTF-8">
     <title>Report</title>
 </head>
-<body bgcolor="#d2691e">
-<table border="1">
+<body>
+<table border="0">
 """
 
 footer = """
@@ -90,10 +90,7 @@ footer = """
 
 content1 = "<tr><td>Projects counter: </td><td>{}</td></tr>".format(prj)
 content2 = "<tr><td>Projects counter: </td><td>{}</td></tr>".format(builds)
-content3 = table
 
 f = open('report/index.html', 'w')
-f.write(headder + content1 + content2 + str(content3) + footer)
+f.write(headder + content1 + content2 + footer)
 f.close()
-
-
